@@ -21,7 +21,6 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
 // - Node objects have a distance method to determine the distance to another node.
 
 float RoutePlanner::CalculateHValue(RouteModel::Node const *node) {
-    // Acceder al input del nodo
     node->distance(*end_node);
 }
 
@@ -55,8 +54,13 @@ void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) {
 // - Create a pointer to the node in the list with the lowest sum.
 // - Remove that node from the open_list.
 // - Return the pointer.
+bool Compare(const RouteModel::Node *node1, const RouteModel::Node *node2) {
+    float sum1 = node1->g_value + node1->h_value;
+    float sum2 = node2->g_value + node2->h_value;
+    return sum1 > sum2; 
+}
 
-RouteModel::Node *RoutePlanner::NextNode() {
+RouteModel::Node *RoutePlanner::NextNode()  {
 
 }
 
